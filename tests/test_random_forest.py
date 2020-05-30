@@ -1,27 +1,29 @@
-from practical2.io import load_beta, load_data
-from practical2.random_forest import RandomForestClassifier
-from pathlib import Path
-from sklearn.metrics import f1_score
+import unittest
+
 import pandas as pd
 import numpy as np
 
+from practical2.random_forest import RandomForestClassifier, f1_score
 
-def test_random_forest():
-    clas = RandomForestClassifier().fit()
 
-    # Read data
-    train_data = pd.read_csv("data/train.csv")
-    train_data = train_data[:300]
+class TestDecisionTree(unittest.TestCase):
 
-    # Separate labels from data
-    labels = train_data['label'].values
-    x = np.array(train_data.drop('label', axis=1))
-    y = labels
-    x_train, x_val, y_train, y_val = train_test_split(x, y,
-                                                      test_size=0.2,
-                                                      random_state=42)
-    # train data
-    clas.fit([x_train, y_train])
-    y_predict = clas.predict(x_val)
+    def test_end_to_end(self):
+        model = RandomForestClassifier()
 
-    assert f1_score(y, y_predict) > 0.5
+        train_data = pd.read_csv("data/train.csv")
+        train_data = train_data[:300]
+
+        labels = train_data['label'].values
+        x = np.array(train_data.drop('label', axis=1))
+        y = labels
+
+        model.fit(x, y)
+        y_predict = model.predict(x)
+        self.assertGreater(f1_score(y, y_predict), 0)
+
+    def test_f1_Score(self):
+        self.assertEqual(f1_score([1, 1, 1], [1, 1, 1]), 1)
+        self.assertEqual(f1_score([1, 1, 1], [0, 0, 0]), 0)
+        self.assertEqual(f1_score([1, 1, 1], [0, 1, 0]), 0.5)
+
