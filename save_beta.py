@@ -5,10 +5,10 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
-from practical1.regression import target, featurize
-from practical1.regression import fit_linear_regression, y_hat
-from practical1.search import cross_val_splits, loss
-from practical1.io import load_data, export_beta
+from practical2.regression import target, featurize
+from practical2.regression import fit_linear_regression, y_hat
+from practical2.search import cross_val_splits, loss
+from practical2.io import load_data, export_beta
 
 
 def parse_args(*argument_array):

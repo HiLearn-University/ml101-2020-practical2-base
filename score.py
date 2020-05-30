@@ -3,9 +3,9 @@ from pathlib import Path
 import json
 import numpy as np
 from save_beta import load_data
-from practical1.regression import target, featurize, y_hat
-from practical1.search import loss
-from practical1.io import load_beta
+from practical2.regression import target, featurize, y_hat
+from practical2.search import loss
+from practical2.io import load_beta
 
 
 def parse_args(*argument_array):
