@@ -3,10 +3,11 @@ import unittest
 import pandas as pd
 import numpy as np
 
-from practical2.random_forest import RandomForestClassifier, f1_score
+from practical2.random_forest import RandomForestClassifier,\
+    f1_score, data_preprocess
 
 
-class TestDecisionTree(unittest.TestCase):
+class TestRandomForestClassifier(unittest.TestCase):
 
     def test_end_to_end(self):
         model = RandomForestClassifier()
@@ -27,3 +28,7 @@ class TestDecisionTree(unittest.TestCase):
         self.assertEqual(f1_score([1, 1, 1], [0, 0, 0]), 0)
         self.assertEqual(f1_score([1, 1, 1], [0, 1, 0]), 0.5)
 
+    def test_data_preprocess(self):
+        data = np.ones([5, 3])
+        result = data_preprocess(data)
+        self.assertEqual(data.shape[0], result.shape[0])

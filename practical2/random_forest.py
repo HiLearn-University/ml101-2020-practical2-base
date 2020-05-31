@@ -26,3 +26,6 @@ def f1_score(y_true: np.ndarray, y_predicted: np.ndarray):
     assert set(y_true).union({1, 0}) == {1, 0}
     raise NotImplementedError()
 
+
+def data_preprocess(data: np.array) -> np.array:
+    raise NotImplementedError
