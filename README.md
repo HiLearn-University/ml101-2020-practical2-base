@@ -20,6 +20,14 @@ The testing code which we are going to use is look like this.
 model = RandomForestClassifier()
 
 test_data = pd.read_csv("test.csv")
+train_data = pd.read_csv("train.csv")
+
+labels = test_data['label'].values
+x_train = np.array(test_data.drop('label', axis=1))
+y_train = labels
+
+x_train = data_preprocess(x_train)
+model.fit(x_train, y_train)
 
 
 labels = test_data['label'].values
@@ -27,7 +35,6 @@ x = np.array(test_data.drop('label', axis=1))
 y = labels
 
 x = data_preprocess(x)
-model.fit(x, y)
 y_predict = model.predict(x)
 print(f1_score(y, y_predict))
 ```
