@@ -21,11 +21,11 @@ class RandomForestClassifier(object):
 
 def f1_score(y_true: np.ndarray, y_predicted: np.ndarray):
     """
-    only 0 and 1 should be accepted labels and 1 is the possitive class
+    only 0 and 1 should be accepted labels and 1 is the positive class
     """
     assert set(y_true).union({1, 0}) == {1, 0}
     raise NotImplementedError()
 
 
 def data_preprocess(data: np.array) -> np.array:
-    raise NotImplementedError
+    raise NotImplementedError()

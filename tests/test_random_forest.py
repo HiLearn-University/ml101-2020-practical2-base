@@ -3,8 +3,8 @@ import unittest
 import pandas as pd
 import numpy as np
 
-from practical2.random_forest import RandomForestClassifier,\
-    f1_score, data_preprocess
+from practical2.random_forest import RandomForestClassifier
+from practical2.random_forest import f1_score, data_preprocess
 
 
 class TestRandomForestClassifier(unittest.TestCase):
@@ -19,8 +19,8 @@ class TestRandomForestClassifier(unittest.TestCase):
         x = np.array(train_data.drop('label', axis=1))
         y = labels
 
-        model.fit(x, y)
-        y_predict = model.predict(x)
+        model.fit(data_preprocess(x), y)
+        y_predict = model.predict(data_preprocess(x))
         self.assertGreater(f1_score(y, y_predict), 0)
 
     def test_f1_Score(self):
